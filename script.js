@@ -154,6 +154,7 @@ function update()        //Main loop
         {
                 caught = true;
                 console.log("RANDOM EVENT")
+                ctx.font = "40pt Calibri";
                 ctx.fillStyle="red";
                 ctx.fillText("You are caught by the monster! Shake the phone to free yourself!",10,90)
                 cancelAnimationFrame(animation);
