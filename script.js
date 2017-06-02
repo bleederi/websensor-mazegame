@@ -11,7 +11,7 @@ var mainUpdate;
 var randomEvent;
 var caught = false;
 
-var animation;
+var draw;
 
 class LowPassFilterData {       //https://w3c.github.io/motion-sensors/#pass-filters
   constructor(reading, bias) {
@@ -61,8 +61,7 @@ ctx = canvas.getContext("2d");
 img.src = "maze2.gif";
 startSensors();
 mainUpdate = setInterval(update, 1000/movefreq);
-animation = requestAnimationFrame(draw);
-return animation;
+return requestAnimationFrame(draw);
 }
 
 function checkcollision() {
@@ -78,7 +77,7 @@ function draw() {
 clear();
 ctx.fillStyle = "purple";
 rect(x, y, 15,15);
-requestAnimationFrame(draw);
+draw = requestAnimationFrame(draw);
 }
 init();
 
@@ -157,7 +156,7 @@ function update()        //Main loop
                 ctx.font = '48px serif';
                 ctx.fillText('Hello world', 50, 100);
                 //ctx.fillText("You are caught by the monster! Shake the phone to free yourself!",10,90)
-                //cancelAnimationFrame(animation);
+                cancelAnimationFrame(draw);
         }
 }
 
