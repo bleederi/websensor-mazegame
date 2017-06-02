@@ -140,7 +140,7 @@ function update()        //Main loop
         }
         randomEvent = Math.random();
         console.log(randomEvent);
-        if(randomEvent > 9.0)
+        if(randomEvent > 0.9)
         {
                 caught = true;
                 console.log("RANDOM EVENT")
