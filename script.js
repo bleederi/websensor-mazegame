@@ -11,7 +11,7 @@ var mainUpdate;
 var randomEvent;
 var caught = false;
 
-var draw;
+var drawvar;
 
 class LowPassFilterData {       //https://w3c.github.io/motion-sensors/#pass-filters
   constructor(reading, bias) {
@@ -77,7 +77,7 @@ function draw() {
 clear();
 ctx.fillStyle = "purple";
 rect(x, y, 15,15);
-draw = requestAnimationFrame(draw);
+drawvar = requestAnimationFrame(draw);
 }
 init();
 
