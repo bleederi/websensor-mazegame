@@ -7,7 +7,8 @@ var shakingvar = 1;        //used for detecting shaking motion
 var sensorfreq = 30;     //for setting desired sensor frequency
 var movefreq = 1000;    //how many times a second the ball moves, TODO: affects the speed of the ball, even though probably should not
 var sensors_started = false;
-var moveUpdate;
+var mainUpdate;
+var randomEvent;
 
 class LowPassFilterData {       //https://w3c.github.io/motion-sensors/#pass-filters
   constructor(reading, bias) {
@@ -56,7 +57,8 @@ canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
 img.src = "maze2.gif";
 startSensors();
-moveUpdate = setInterval(move, 1000/movefreq);
+mainUpdate = setInterval(update, 1000/movefreq);
+randomEvent = Math.random();
 return requestAnimationFrame(draw);
 }
 
@@ -77,7 +79,15 @@ requestAnimationFrame(draw);
 }
 init();
 
-function move()        //Moves the ball
+function shakeEvent()
+{
+        if (caught == true)
+        {
+                caught = false;
+        }
+}
+
+function update()        //Main loop
 {
         //filter noise
         if(Math.abs(gravity.x) > 0.1)
@@ -101,7 +111,7 @@ function move()        //Moves the ball
         }
         if(shakingvar >= 100)    //shake event
         {
-                console.log("SHAKE");
+                //console.log("SHAKE");
                 shakingvar = 0;
         }
         //Simulate friction
@@ -127,6 +137,11 @@ function move()        //Moves the ball
                         x -= dx;
                         collision = 0;
                 }
+        }
+        if(randomEvent > 0.99)
+        {
+                caught = true;
+                console.log("RANDOM EVENT")
         }
 }
 
