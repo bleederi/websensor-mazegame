@@ -58,7 +58,6 @@ ctx = canvas.getContext("2d");
 img.src = "maze2.gif";
 startSensors();
 mainUpdate = setInterval(update, 1000/movefreq);
-randomEvent = Math.random();
 return requestAnimationFrame(draw);
 }
 
@@ -112,6 +111,7 @@ function update()        //Main loop
         if(shakingvar >= 100)    //shake event
         {
                 //console.log("SHAKE");
+                shakeEvent();
                 shakingvar = 0;
         }
         //Simulate friction
@@ -138,7 +138,9 @@ function update()        //Main loop
                         collision = 0;
                 }
         }
-        if(randomEvent > 0.99)
+        randomEvent = Math.random();
+        console.log(randomEvent);
+        if(randomEvent > 9.0)
         {
                 caught = true;
                 console.log("RANDOM EVENT")
@@ -165,7 +167,7 @@ function startSensors() {
                         {
                         gravity.x = accel.x;
                         gravity.y = accel.y;
-                        console.log(gravity);
+                        //console.log(gravity);
                         }
                         gravity.update(accel);
                 }
