@@ -11,6 +11,8 @@ var mainUpdate;
 var randomEvent;
 var caught = false;
 
+var animation;
+
 class LowPassFilterData {       //https://w3c.github.io/motion-sensors/#pass-filters
   constructor(reading, bias) {
     Object.assign(this, { x: reading.x, y: reading.y, z: reading.z });
@@ -59,7 +61,8 @@ ctx = canvas.getContext("2d");
 img.src = "maze2.gif";
 startSensors();
 mainUpdate = setInterval(update, 1000/movefreq);
-return requestAnimationFrame(draw);
+animation = requestAnimationFrame(draw);
+return animation;
 }
 
 function checkcollision() {
@@ -151,6 +154,9 @@ function update()        //Main loop
         {
                 caught = true;
                 console.log("RANDOM EVENT")
+                ctx.fillStyle=red;
+                ctx.fillText("You are caught by the monster! Shake the phone to free yourself!",10,90)
+                cancelAnimationFrame(animation);
         }
 }
 
