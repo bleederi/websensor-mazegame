@@ -138,8 +138,8 @@ function update()        //Main loop
                         collision = 0;
                 }
         }
-        //randomEvent = Math.random();
-        console.log(randomEvent);
+        randomEvent = Math.random();
+        //console.log(randomEvent);
         if(randomEvent > 0.99)
         {
                 caught = true;
