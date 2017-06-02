@@ -140,7 +140,7 @@ function update()        //Main loop
         }
         randomEvent = Math.random();
         //console.log(randomEvent);
-        if(randomEvent > 0.99)
+        if(randomEvent > 1000*(0.9995/movefreq))
         {
                 caught = true;
                 console.log("RANDOM EVENT")
