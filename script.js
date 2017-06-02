@@ -1,3 +1,5 @@
+//Code from http://html5.litten.com/make-a-maze-game-on-an-html5-canvas/ has been used in creating this demo
+
 var sensors = {};
 var gravity = {x:null, y:null, z:null};
 var accel = {x:null, y:null, z:null};
@@ -7,11 +9,14 @@ var shakingvar = 1;        //used for detecting shaking motion
 var sensorfreq = 30;     //for setting desired sensor frequency
 var movefreq = 1000;    //how many times a second the ball moves, TODO: affects the speed of the ball, even though probably should not
 var sensors_started = false;
+/*      Related to random event, can either remove or finish
 var mainUpdate;
 var randomEvent;
 var caught = false;
 
+*/
 var drawvar;
+
 
 class LowPassFilterData {       //https://w3c.github.io/motion-sensors/#pass-filters
   constructor(reading, bias) {
@@ -32,6 +37,7 @@ return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z
 
 screen.orientation.lock('portrait');
 
+
 var canvas;
 var ctx;
 var dx = 0;
@@ -39,8 +45,8 @@ var dy = 0;
 //starting position
 var x = 570;
 var y = 360;
-var WIDTH;
-var HEIGHT;
+var WIDTH = 800;
+var HEIGHT = 800;
 var img = new Image();
 var collision = 0;
 
@@ -56,8 +62,6 @@ ctx.drawImage(img, 0, 0);
 }
 function init() {
 canvas = document.getElementById("canvas");
-WIDTH = canvas.width;
-HEIGHT = canvas.height;
 ctx = canvas.getContext("2d");
 img.src = "maze2.gif";
 startSensors();
@@ -102,23 +106,6 @@ function update()        //Main loop
         {            
                         dy = 0.5 * gravity['y'];                      
         }
-        if(magnitude(diff) > (120/sensorfreq))  //with lower sensor frequencies the diff will be bigger
-        {
-                shakingvar = shakingvar + 1;
-        }
-        else
-        {
-                if(shakingvar > 0)
-                {
-                shakingvar = shakingvar - 1;
-                }
-        }
-        if(shakingvar >= 100)    //shake event
-        {
-                //console.log("SHAKE");
-                shakeEvent();
-                shakingvar = 0;
-        }
         //Simulate friction
         dx = dx/1.01
         dy = dy/1.01
@@ -149,8 +136,25 @@ function update()        //Main loop
                         }
                 }
         }
+        /* Related to random event, can either remove or finish
+        if(magnitude(diff) > (120/sensorfreq))  //with lower sensor frequencies the diff will be bigger
+        {
+                shakingvar = shakingvar + 1;
+        }
+        else
+        {
+                if(shakingvar > 0)
+                {
+                shakingvar = shakingvar - 1;
+                }
+        }
+        if(shakingvar >= 100)    //shake event
+        {
+                //console.log("SHAKE");
+                shakeEvent();
+                shakingvar = 0;
+        }
         randomEvent = Math.random();
-        //console.log(randomEvent);
         if(randomEvent > 1000*(0.99975/movefreq))
         {
                 caught = true;
@@ -165,6 +169,7 @@ function update()        //Main loop
                 ctx.fillText("Shake the phone to free yourself!", 100, 240);
                 cancelAnimationFrame(drawvar);
         }
+        */
 }
 
 function startSensors() {
@@ -172,22 +177,22 @@ function startSensors() {
                 //Right now we only want to use gravity sensor (low-pass filtered daccelerometer data)
                 //Accelerometer including gravity
                 accelerometer = new Accelerometer({ frequency: sensorfreq, includeGravity: true });
-                //accelerometer = new GravitySensor({frequency: sensorfreq})
                 sensors.Accelerometer = accelerometer;
                 gravity =  new LowPassFilterData(accelerometer, 0.8);   //need to find good bias value
                 accelerometer.onchange = event => {
                         prevaccel = accel;
                         accel = {x:accelerometer.x, y:accelerometer.y, z:accelerometer.z};
+                        /* Related to random event, can either remove or finish
                         for (var key in accel)
                                 {
                                         diff[key] = accel[key] - prevaccel[key];
                                 }
+                        */
                         //For the ball to not move slow in the beginning due to gravity low-pass filtering taking very long, we set an initial value - only done on first accelerometer onchange event
                         if(gravity.x == null && gravity.y == null)
                         {
                         gravity.x = accel.x;
                         gravity.y = accel.y;
-                        //console.log(gravity);
                         }
                         gravity.update(accel);
                 }
