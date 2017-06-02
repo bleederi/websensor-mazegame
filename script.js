@@ -112,8 +112,8 @@ function update()        //Main loop
         //y axis
         if(y + dy < HEIGHT && y + dy > 0)
         {
-                if(caught == false)
-                {
+//                if(caught == false)   //Related to random event, can either remove or finish
+//                {
                         y += dy;                
                         clear();
                         checkcollision();
@@ -121,19 +121,19 @@ function update()        //Main loop
                                 y -= dy;
                                 collision = 0;
                         }
-                }
+//                }
         }
         if(x + dx < WIDTH && x + dx > 0)
         {
-                if(caught == false)
-                {
+//                if(caught == false)   //Related to random event, can either remove or finish
+//                {
                         x += dx;
                         clear();
                         checkcollision();
                         if (collision == 1){
                                 x -= dx;
                                 collision = 0;
-                        }
+//                        }
                 }
         }
         /* Related to random event, can either remove or finish
