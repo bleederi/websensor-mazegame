@@ -86,6 +86,7 @@ function shakeEvent()
         if (caught == true)
         {
                 caught = false;
+                drawvar = requestAnimationFrame(draw);
         }
 }
 
@@ -153,9 +154,9 @@ function update()        //Main loop
         {
                 caught = true;
                 console.log("RANDOM EVENT")
-                ctx.font = '48px serif';
-                ctx.fillText('Hello world', 50, 100);
-                //ctx.fillText("You are caught by the monster! Shake the phone to free yourself!",10,90)
+                ctx.font = '24px serif';
+                //ctx.fillText('Hello world', 50, 100);
+                ctx.fillText("You are caught by the monster! Shake the phone to free yourself!",10,90)
                 cancelAnimationFrame(drawvar);
         }
 }
