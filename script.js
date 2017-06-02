@@ -9,6 +9,7 @@ var movefreq = 1000;    //how many times a second the ball moves, TODO: affects 
 var sensors_started = false;
 var mainUpdate;
 var randomEvent;
+var caught = false;
 
 class LowPassFilterData {       //https://w3c.github.io/motion-sensors/#pass-filters
   constructor(reading, bias) {
@@ -120,27 +121,33 @@ function update()        //Main loop
         //y axis
         if(y + dy < HEIGHT && y + dy > 0)
         {
-                y += dy;
-                clear();
-                checkcollision();
-                if (collision == 1){
-                        y -= dy;
-                        collision = 0;
+                if(caught == false)
+                {
+                        y += dy;                
+                        clear();
+                        checkcollision();
+                        if (collision == 1){
+                                y -= dy;
+                                collision = 0;
+                        }
                 }
         }
         if(x + dx < WIDTH && x + dx > 0)
         {
-                x += dx;
-                clear();
-                checkcollision();
-                if (collision == 1){
-                        x -= dx;
-                        collision = 0;
+                if(caught == false)
+                {
+                        x += dx;
+                        clear();
+                        checkcollision();
+                        if (collision == 1){
+                                x -= dx;
+                                collision = 0;
+                        }
                 }
         }
         randomEvent = Math.random();
         //console.log(randomEvent);
-        if(randomEvent > 1000*(0.9995/movefreq))
+        if(randomEvent > 1000*(0.99975/movefreq))
         {
                 caught = true;
                 console.log("RANDOM EVENT")
