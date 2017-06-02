@@ -153,10 +153,14 @@ function update()        //Main loop
         if(randomEvent > 1000*(0.99975/movefreq))
         {
                 caught = true;
-                console.log("RANDOM EVENT")
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.rect(0,0,WIDTH,HEIGHT);
+                ctx.closePath();
+                ctx.fill();
                 ctx.font = '24px serif';
-                //ctx.fillText('Hello world', 50, 100);
-                ctx.fillText("You are caught by the monster! Shake the phone to free yourself!",10,90)
+                ctx.fillStyle = "red";
+                ctx.fillText("You are caught by the monster!\nShake the phone to free yourself!",100,200)
                 cancelAnimationFrame(drawvar);
         }
 }
