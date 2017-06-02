@@ -160,7 +160,8 @@ function update()        //Main loop
                 ctx.fill();
                 ctx.font = '24px serif';
                 ctx.fillStyle = "red";
-                ctx.fillText("You are caught by the monster!\nShake the phone to free yourself!",100,200)
+                ctx.fillText("You have been caught by the monster!",100,200)
+                ctx.fillText("Shake the phone to free yourself!", 100, 240);
                 cancelAnimationFrame(drawvar);
         }
 }
