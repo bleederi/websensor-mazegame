@@ -39,6 +39,8 @@ var dy = 0;
 //starting position
 var x = 570;
 var y = 360;
+var WIDTH;
+var HEIGHT;
 var img = new Image();
 var collision = 0;
 
@@ -54,8 +56,8 @@ ctx.drawImage(img, 0, 0);
 }
 function init() {
 canvas = document.getElementById("canvas");
-var WIDTH = canvas.width;
-var HEIGHT = canvas.height;
+WIDTH = canvas.width;
+HEIGHT = canvas.height;
 ctx = canvas.getContext("2d");
 img.src = "maze2.gif";
 startSensors();
