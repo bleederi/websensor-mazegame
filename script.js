@@ -40,8 +40,8 @@ var dy = 0;
 var x = 570;
 var y = 360;
 //canvas size
-var WIDTH = 800;
-var HEIGHT = 800;
+var WIDTH = screen.width;
+var HEIGHT = screen.height;
 var img = new Image();
 var collision = 0;
 
