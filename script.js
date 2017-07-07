@@ -199,7 +199,7 @@ function startSensors() {
                 accelerometer = new Accelerometer({ frequency: sensorfreq, includeGravity: true });
                 sensors.Accelerometer = accelerometer;
                 gravity =  new LowPassFilterData(accelerometer, 0.8);   //need to find good bias value
-                accelerometer.onchange = event => {
+                accelerometer.onreading = event => {
                         prevaccel = accel;
                         accel = {x:accelerometer.x, y:accelerometer.y, z:accelerometer.z};
                         /* Related to random event, can either remove or finish
